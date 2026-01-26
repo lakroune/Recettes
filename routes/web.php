@@ -20,3 +20,11 @@ Route::get('/index', function () {
 Route::get('/recette', function () {
     return view('recette');
 });
+
+Route::get('/add', function () {
+    return view('add');
+});
+
+route::get('/favoris', function () {
+    return view('favoris');
+});
