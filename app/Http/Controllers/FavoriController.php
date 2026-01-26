@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class FavorisController extends Controller
+class FavoriController extends Controller
 {
     /**
      * Display a listing of the resource.
