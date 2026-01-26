@@ -115,7 +115,7 @@
 
                         <div class="relative">
                             <textarea id="main-input" placeholder="Votre message..." class="w-full bg-transparent border-b border-gray-200 py-4 text-sm focus:outline-none focus:border-black transition resize-none min-h-[100px]"></textarea>
-                            <button id="main-submit" onclick="handleAction()" class="mt-4 bg-black text-white text-[10px] font-bold uppercase tracking-[0.2em] px-8 py-4 rounded-full hover:bg-orange-600 transition btn-animate">
+                            <button id="main-submit" onclick="handleAction()" class="mt-4 bg-black text-white text-[10px] font-bold uppercase tracking-[0.2em] px-8 py-4  hover:bg-orange-600 transition btn-animate">
                                 Publier maintenant
                             </button>
                         </div>

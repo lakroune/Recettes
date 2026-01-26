@@ -36,3 +36,7 @@ route::get('/gerer', function () {
 route::get('/edit', function () {
     return view('edit');
 });
+
+Route::get('/error', function () {
+    return view('error');
+});
