@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RecetteController;
 
 Route::get('/', function () {
     return view('home');
@@ -22,14 +23,6 @@ Route::get('/recette', function () {
     return view('recette');
 });
 
-Route::get('/add', function () {
-    return view('add');
-});
-
-route::get('/favoris', function () {
-    return view('favoris');
-});
-
 route::get('/gerer', function () {
     return view('gerer');
 });
@@ -45,3 +38,5 @@ Route::get('/error', function () {
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/recette/add', [RecetteController::class, 'create'])->name('recette.add');
+Route::post('/recette/store', [RecetteController::class, 'store'])->name('recette.store');

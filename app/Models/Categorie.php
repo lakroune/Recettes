@@ -12,4 +12,5 @@ class Categorie extends Model
     {
         return $this->hasMany(Recette::class);
     }
+   
 }

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
 use Illuminate\Http\Request;
 
-class RecettteController extends Controller
+class RecetteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +20,10 @@ class RecettteController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Categorie::all();
+        return view('recette.add', compact('categories'));
     }
+
 
     /**
      * Store a newly created resource in storage.

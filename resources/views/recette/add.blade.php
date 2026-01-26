@@ -67,14 +67,14 @@
             </h1>
         </header>
 
-        <form class="grid grid-cols-1 lg:grid-cols-12 gap-20">
+        <form action="{{ route('recette.store') }}" method="POST" class="grid grid-cols-1 lg:grid-cols-12 gap-20">
 
             <div class="lg:col-span-7 space-y-16">
 
                 <section class="space-y-8">
                     <input type="text" placeholder="Titre de la recette..."
                         class="input-flat w-full py-4 text-4xl font-black tracking-tighter">
-                    <div class="grid grid-cols-3 gap-10">
+                    <div class="grid grid-cols-4 gap-10">
                         <div class="flex flex-col"><label
                                 class="text-[9px] font-bold uppercase text-gray-400 mb-2">Temps (min)</label><input
                                 type="number" class="input-flat py-2 font-bold italic"></div>
@@ -84,10 +84,26 @@
                                 <option>Facile</option>
                                 <option>Moyen</option>
                                 <option>Expert</option>
-                            </select></div>
+                            </select>
+                        </div>
+
+
                         <div class="flex flex-col"><label
-                                class="text-[9px] font-bold uppercase text-gray-400 mb-2">Calories</label><input
-                                type="number" class="input-flat py-2 font-bold italic"></div>
+                                class="text-[9px] font-bold uppercase text-gray-400 mb-2">Catégorie</label>
+                            <select class="input-flat py-2 font-bold italic bg-transparent">
+                                <option value=""> categorie</option>
+                                @foreach ($categories as $categorie)
+                                    <option value="{{ $categorie->id }}">{{ $categorie->nom_categorie }}</option>
+                                @endforeach
+
+                            </select>
+                        </div>
+
+                        <div class="flex flex-col"><label
+                                class="text-[9px] font-bold uppercase text-gray-400 mb-2">Calories
+                            </label>
+                            <input type="number" class="input-flat py-2 font-bold italic">
+                        </div>
                     </div>
                 </section>
 
