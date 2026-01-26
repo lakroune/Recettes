@@ -50,14 +50,17 @@
                      </div>
                  </a>
                  {{-- logout --}}
-                 <a href="/logout" class="flex items-center gap-2 group">
-                     <span
-                         class="text-[10px] font-bold uppercase tracking-widest hidden sm:block group-hover:text-orange-600 transition"></span>
-                     <div
-                         class="h-9 w-9 rounded-full bg-black text-white flex items-center justify-center text-xs cursor-pointer btn-animate hover:bg-orange-600">
-                         <i class="fa-solid fa-right-from-bracket"></i>
-                     </div>
-                 </a>
+                 <form method="POST" action="{{ route('logout') }}">
+                     @csrf
+                     <button href="/logout" class="flex items-center gap-2 group">
+                         <span
+                             class="text-[10px] font-bold uppercase tracking-widest hidden sm:block group-hover:text-orange-600 transition"></span>
+                         <div
+                             class="h-9 w-9 rounded-full bg-black text-white flex items-center justify-center text-xs cursor-pointer btn-animate hover:bg-orange-600">
+                             <i class="fa-solid fa-right-from-bracket"></i>
+                         </div>
+                     </button>
+                 </form>
              @else
                  <a href="/login" class="flex items-center gap-2 group">
                      <span
