@@ -28,3 +28,11 @@ Route::get('/add', function () {
 route::get('/favoris', function () {
     return view('favoris');
 });
+
+route::get('/gerer', function () {
+    return view('gerer');
+});
+
+route::get('/edit', function () {
+    return view('edit');
+});

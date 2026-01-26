@@ -3,124 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Créer un compte - FoodieShare</title>
+    <title>Rejoindre le Studio | FoodieShare</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        .bg-register {
-            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=1470');
-            background-size: cover;
-            background-position: center;
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; overflow-x: hidden; }
+        .input-flat {
+            background: transparent;
+            border-bottom: 2px solid #f3f4f6;
+            transition: all 0.3s ease;
+            border-radius: 0;
+        }
+        .input-flat:focus {
+            outline: none;
+            border-bottom-color: #ea580c;
+        }
+        .btn-black {
+            background: #000;
+            color: #fff;
+            padding: 1.25rem;
+            text-transform: uppercase;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.3em;
+            transition: all 0.3s;
+        }
+        .btn-black:hover {
+            background: #ea580c;
         }
     </style>
 </head>
-<body class="bg-gray-50 flex items-center justify-center min-h-screen py-10">
+<body class="text-[#1a1a1a]">
 
-    <div class="flex flex-col md:flex-row-reverse shadow-2xl rounded-2xl overflow-hidden max-w-5xl w-full m-4 bg-white">
+    <div class="flex h-screen flex-row-reverse">
         
-        <div class="hidden md:flex md:w-1/2 bg-register p-12 flex-col justify-between text-white text-right">
-            <div>
-                <h1 class="text-4xl font-bold italic">Rejoignez-nous</h1>
-                <p class="mt-4 text-gray-200">Commencez votre voyage culinaire, partagez vos secrets et inspirez des milliers de gourmands.</p>
+        <div class="w-full lg:w-[45%] flex flex-col justify-center px-12 md:px-20 bg-white relative">
+            
+            <div class="absolute top-10 right-12 lg:right-auto lg:left-12">
+                {{-- <a href="#" class="text-sm font-black tracking-tighter uppercase italic">Foodie<span class="text-orange-600">.</span>Share</a> --}}
             </div>
-            <div class="text-sm font-light">
-                Rejoignez +5000 Chefs amateurs déjà inscrits.
+
+            <div class="max-w-md w-full mx-auto">
+               <header class="mb-12">
+    <span class="text-[10px] font-bold tracking-[0.4em] text-gray-300 uppercase italic underline decoration-orange-600 underline-offset-8 block mb-6">
+        Nouveau Créateur
+    </span>
+    <h1 class="text-5xl md:text-6xl font-extrabold tracking-tighter leading-[0.9] mt-4">
+        {{-- <span class="block">Rejoindre</span>
+        <span class="block">le Studio.</span> --}}
+    </h1>
+</header>
+
+                <form class="space-y-8">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="flex flex-col">
+                            <label class="text-[9px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-2">Prénom</label>
+                            <input type="text" placeholder="Zakaria" class="input-flat py-3 text-sm italic">
+                        </div>
+                        <div class="flex flex-col">
+                            <label class="text-[9px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-2">Nom</label>
+                            <input type="text" placeholder="Chef" class="input-flat py-3 text-sm italic">
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <label class="text-[9px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-2">Email Professionnel</label>
+                        <input type="email" placeholder="chef@foodieshare.com" class="input-flat py-3 text-sm">
+                    </div>
+
+                    <div class="flex flex-col">
+                        <label class="text-[9px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-2">Mot de passe</label>
+                        <input type="password" placeholder="••••••••" class="input-flat py-3 text-sm">
+                    </div>
+
+                    <div class="flex items-center gap-3 py-2">
+                        <input type="checkbox" class="accent-black">
+                        <label class="text-[9px] font-bold uppercase tracking-widest text-gray-400">J'accepte les conditions</label>
+                    </div>
+
+                    <div class="pt-4">
+                        <button type="submit" class="btn-black w-full">
+                            Créer mon profil chef
+                        </button>
+                    </div>
+                </form>
+
+                <footer class="mt-12">
+                    <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">
+                        Déjà membre ? 
+                        <a href="/login" class="text-black hover:text-orange-600 border-b border-black ml-2 transition-colors">Se connecter</a>
+                    </p>
+                </footer>
             </div>
         </div>
 
-        <div class="w-full md:w-1/2 p-8 md:px-16">
-            <div class="mb-8 text-center md:text-left">
-                <h2 class="text-3xl font-bold text-gray-800">Créer un Profil</h2>
-                <p class="text-gray-500">C'est gratuit et ça le restera toujours.</p>
+        <div class="hidden lg:block lg:w-[55%] relative overflow-hidden bg-black">
+            <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=1200&auto=format&fit=crop" 
+                 alt="Kitchen Art" 
+                 class="w-full h-full object-cover opacity-70 grayscale hover:opacity-100 transition-opacity duration-1000">
+            
+            <div class="absolute inset-0 flex flex-col justify-end p-20">
+                <div class="max-w-md border-l-2 border-orange-600 pl-8">
+                    <p class="text-white text-3xl font-light italic leading-snug">
+                        "L'ingrédient secret est toujours la passion."
+                    </p>
+                    <p class="text-orange-600 text-[10px] font-black uppercase tracking-[0.4em] mt-6">
+                        Inscrivez-vous gratuitement.
+                    </p>
+                </div>
             </div>
-
-            <form id="registerForm" class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">Nom Complet</label>
-                    <div class="mt-1 relative">
-                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
-                            <i class="fa-solid fa-user"></i>
-                        </span>
-                        <input type="text" id="fullname" required
-                            class="block w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500 text-sm outline-none transition-all"
-                            placeholder="Ex: Mohamed Chef">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">Adresse Email</label>
-                    <div class="mt-1 relative">
-                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
-                            <i class="fa-solid fa-envelope"></i>
-                        </span>
-                        <input type="email" id="email" required
-                            class="block w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500 text-sm outline-none transition-all"
-                            placeholder="chef@exemple.com">
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">Mot de passe</label>
-                        <div class="mt-1 relative">
-                            <input type="password" id="password" required
-                                class="block w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500 text-sm outline-none transition-all"
-                                placeholder="••••••••">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">Confirmer</label>
-                        <div class="mt-1 relative">
-                            <input type="password" id="confirmPassword" required
-                                class="block w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-orange-500 focus:border-orange-500 text-sm outline-none transition-all"
-                                placeholder="••••••••">
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">Votre spécialité préférée</label>
-                    <select class="mt-1 block w-full pl-3 pr-10 py-2.5 text-sm border border-gray-300 focus:outline-none focus:ring-orange-500 focus:border-orange-500 rounded-lg">
-                        <option>Entrées</option>
-                        <option>Plats de résistance</option>
-                        <option>Desserts</option>
-                        <option>Boissons</option>
-                    </select>
-                </div>
-
-                <div class="flex items-center">
-                    <input type="checkbox" required class="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded">
-                    <label class="ml-2 block text-sm text-gray-600">
-                        J'accepte les <a href="#" class="text-orange-600 hover:underline">Conditions d'Utilisation</a>
-                    </label>
-                </div>
-
-                <button type="submit" 
-                    class="w-full bg-orange-600 text-white py-3 rounded-lg font-semibold hover:bg-orange-700 shadow-md transition-all active:scale-95">
-                    Créer mon compte
-                </button>
-            </form>
-
-            <p class="mt-6 text-center text-sm text-gray-600">
-                Déjà membre ? 
-                <a href="#" class="text-orange-600 font-bold hover:underline">Se connecter</a>
-            </p>
         </div>
+
     </div>
 
-    <script>
-        document.getElementById('registerForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const pass = document.getElementById('password').value;
-            const confirm = document.getElementById('confirmPassword').value;
-
-            if(pass !== confirm) {
-                alert("Oups ! Les mots de passe ne sont pas identiques.");
-                return;
-            }
-
-            alert("Compte créé avec succès ! Bienvenue au club.");
-        });
-    </script>
 </body>
 </html>
