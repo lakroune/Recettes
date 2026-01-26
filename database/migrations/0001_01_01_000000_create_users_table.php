@@ -18,7 +18,7 @@
                 $table->string('email')->unique();
                 $table->timestamp('email_verified_at')->nullable();
                 $table->string('password');
-                $table->enum('role_user', ['admin', 'visitor'])->default('visitor');
+                $table->enum('role', ['admin', 'visiteur'])->default('visiteur');
                 $table->rememberToken();
                 $table->timestamps();
             });
