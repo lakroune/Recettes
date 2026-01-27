@@ -84,7 +84,7 @@
                     <div class="flex gap-4 pt-2">
 
 
-                        <button onclick="window.location.href='/recette'"
+                        <button onclick="window.location.href='/recette/1'"
                             class="bg-black text-white text-[10px] font-bold uppercase tracking-wider px-6 py-3  btn-animate hover:bg-orange-600 ">Découvrir</button>
                     </div>
                 </div>
@@ -102,81 +102,97 @@
         </section>
 
         <section class="mb-16 animate-in" style="animation-delay: 0.2s;">
-            <div class="flex flex-col md:flex-row items-end justify-between gap-8 border-b border-gray-200 pb-4">
-                <div class="w-full md:w-1/2">
-                    <label class="text-[9px] font-bold uppercase tracking-[0.2em] text-gray-400 block mb-2">Rechercher
-                        une saveur</label>
-                    <input type="text" placeholder="EX: RISOTTO AUX TRUFFES..."
-                        class="w-full bg-transparent text-xl md:text-2xl font-light tracking-tight focus:outline-none placeholder:text-gray-200">
-                </div>
-
-                <div class="flex items-center gap-4 w-full md:w-auto">
-                    <div class="relative w-full md:w-48">
+            <form action="{{ route('search') }}" method="POST">
+                @csrf
+                <div class="flex flex-col md:flex-row items-end justify-between gap-8 border-b border-gray-200 pb-4">
+                    <div class="w-full md:w-1/2">
                         <label
-                            class="text-[9px] font-bold uppercase tracking-[0.2em] text-gray-400 block mb-2 text-right">Catégorie</label>
-                        <select
-                            class="custom-select w-full bg-transparent text-[11px] font-bold uppercase tracking-widest text-right pr-6 focus:outline-none cursor-pointer">
-                            <option>Toutes les recettes</option>
-                            <option>Entrées</option>
-                            <option>Plats Principaux</option>
-                            <option>Desserts</option>
-                            <option>Boissons</option>
-                        </select>
+                            class="text-[9px] font-bold uppercase tracking-[0.2em] text-gray-400 block mb-2">Rechercher
+                            une saveur</label>
+                        <input type="text" placeholder="EX: RISOTTO AUX TRUFFES..."
+                            class="w-full bg-transparent text-xl md:text-2xl font-light tracking-tight focus:outline-none placeholder:text-gray-200">
+                    </div>
+
+                    <div class="flex items-center gap-4 w-full md:w-auto">
+                        <div class="relative w-full md:w-48">
+                            <label
+                                class="text-[9px] font-bold uppercase tracking-[0.2em] text-gray-400 block mb-2 text-right">Catégorie</label>
+                            <select
+                                class="custom-select w-full bg-transparent text-[11px] font-bold uppercase tracking-widest text-right pr-6 focus:outline-none cursor-pointer">
+                                <option disabled selected>Toutes les recettes</option>
+                                @foreach ($categories as $categorie)
+                                    <option value="{{ $categorie->id }}">{{ $categorie->nom_categorie }}</option>
+                                @endforeach
+                            </select>
+
+                        </div>
                     </div>
                 </div>
-            </div>
+                <form action="" method="POST">
+                </form>
+
         </section>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16 pb-20 animate-in"
             style="animation-delay: 0.3s;">
+            @foreach ($recettes as $recette)
+                <div class="recipe-card group">
+                    <div class="relative overflow-hidden rounded-sm bg-gray-200 aspect-[4/5] mb-4">
+                        <img src="{{ asset('storage/' . $recette->images[0]->url_image) }}"
+                            class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition duration-700">
 
-            <div class="recipe-card group">
-                <div class="relative overflow-hidden rounded-sm bg-gray-200 aspect-[4/5] mb-4">
-                    <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&q=80&w=800"
-                        class="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition duration-700">
-
-                    <button
-                        class="absolute top-4 right-4 h-9 w-9 bg-white/90 backdrop-blur rounded-full flex items-center justify-center shadow-sm hover:text-red-500 transition btn-animate">
-                        <i class="fa-regular fa-heart"></i>
-                    </button>
-
-                    <div
-                        class="absolute bottom-4 right-4 translate-y-12 group-hover:translate-y-0 transition duration-500">
                         <button
-                            class="h-10 w-10 bg-black text-white rounded-full flex items-center justify-center shadow-xl hover:bg-orange-600 transition">
-                            <i class="fa-solid fa-arrow-right -rotate-45"></i>
+                            class="absolute top-4 right-4 h-9 w-9 bg-white/90 backdrop-blur rounded-full flex items-center justify-center shadow-sm hover:text-red-500 transition btn-animate">
+                            <i class="fa-regular fa-heart"></i>
                         </button>
+
+                        <div
+                            class="absolute bottom-4 right-4 translate-y-12 group-hover:translate-y-0 transition duration-500">
+                            <button
+                                class="h-10 w-10 bg-black text-white rounded-full flex items-center justify-center shadow-xl hover:bg-orange-600 transition">
+                                <i class="fa-solid fa-arrow-right -rotate-45"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-start">
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-orange-600">
+                                {{ $recette->title_recette }}
+                            </p>
+                            <div class="flex items-center gap-2 text-[10px] text-gray-400 font-bold">
+                                <span><i class="fa-solid fa-star text-orange-500 text-[8px]"></i> 4.8</span>
+                                <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
+                                <span>{{ $recette->temp_preparation }} MIN</span>
+                            </div>
+                        </div>
+
+                        <h3
+                            class="text-lg font-bold tracking-tight group-hover:underline decoration-1 underline-offset-4">
+                            <a href="recette/{{ $recette->id }} ">
+                                {{ $recette->title_recette }}
+                            </a>
+                        </h3>
+
+                        <div class="flex items-center justify-between pt-2 border-t border-gray-50">
+                            <div class="flex items-center gap-2">
+                                <div
+                                    class="w-5 h-5 rounded-full bg-zinc-800 flex items-center justify-center text-[8px] text-white font-bold">
+                                    A</div>
+                                <span class="text-[9px] font-bold uppercase tracking-tighter">Chef Amine</span>
+                            </div>
+
+                            <div class="flex items-center gap-3 text-gray-400">
+                                <span class="text-[9px] font-bold"><i class="fa-regular fa-heart mr-1"></i>
+                                    {{ count($recette->favoris) }}</span>
+                                <span class="text-[9px] font-bold"><i class="fa-regular fa-comment mr-1"></i>
+                                    {{ count($recette->commentaires) }} </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            @endforeach
 
-                <div class="space-y-2">
-                    <div class="flex justify-between items-start">
-                        <p class="text-[10px] font-bold uppercase tracking-widest text-orange-600">Plat Principal</p>
-                        <div class="flex items-center gap-2 text-[10px] text-gray-400 font-bold">
-                            <span><i class="fa-solid fa-star text-orange-500 text-[8px]"></i> 4.8</span>
-                            <span class="w-1 h-1 bg-gray-300 rounded-full"></span>
-                            <span>20 MIN</span>
-                        </div>
-                    </div>
-
-                    <h3 class="text-lg font-bold tracking-tight group-hover:underline decoration-1 underline-offset-4">
-                        Bowl de Saison aux Légumes</h3>
-
-                    <div class="flex items-center justify-between pt-2 border-t border-gray-50">
-                        <div class="flex items-center gap-2">
-                            <div
-                                class="w-5 h-5 rounded-full bg-zinc-800 flex items-center justify-center text-[8px] text-white font-bold">
-                                A</div>
-                            <span class="text-[9px] font-bold uppercase tracking-tighter">Chef Amine</span>
-                        </div>
-
-                        <div class="flex items-center gap-3 text-gray-400">
-                            <span class="text-[9px] font-bold"><i class="fa-regular fa-heart mr-1"></i> 124</span>
-                            <span class="text-[9px] font-bold"><i class="fa-regular fa-comment mr-1"></i> 8</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
         </div>
     </main>

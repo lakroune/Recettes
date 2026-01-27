@@ -95,13 +95,13 @@
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 h-[600px]">
-                <div class="md:col-span-8 h-full">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-1 h-[400px]">
+                <div class="md:col-span-6 h-[390px]">
                     <img src="{{ asset('storage/' . $recette->images[0]->url_image) }}"
                         class="w-full h-full object-cover rounded-sm">
                 </div>
-                <div class="md:col-span-4 grid grid-rows-2 gap-4 h-full">
-                    @foreach ($recette->images->slice(1, 2) as $img)
+                <div class="md:col-span-6 grid grid-rows-2 grid-cols-2 gap-1 h-[390px]">
+                    @foreach ($recette->images->slice(1, 5) as $img)
                         <img src="{{ asset('storage/' . $img->url_image) }}"
                             class="w-full h-full object-cover rounded-sm">
                     @endforeach

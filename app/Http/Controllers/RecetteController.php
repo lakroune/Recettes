@@ -18,7 +18,15 @@ class RecetteController extends Controller
      */
     public function index()
     {
-        //
+        $recettes = Recette::all();
+        $categories = Categorie::all();
+        // return view('home', compact('recettes', 'categories'));
+    }
+    public function search(Request $request)
+    {
+        $recettes = Recette::where('title_recette', 'like', '%' . $request->search . '%')->get();
+        $categories = Categorie::all();
+        return view('home', compact('recettes', 'categories'));
     }
 
     /**
