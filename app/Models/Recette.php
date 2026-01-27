@@ -8,6 +8,7 @@ class Recette extends Model
 {
     protected $table = 'recettes';
 
+    protected $fillable = ['user_id', 'categorie_id', 'title_recette', 'description_recette', 'temp_preparation', 'difficulte', 'calories', 'is_recipe_of_day', 'is_deleted'];
     public function categorie()
     {
         return $this->belongsTo(Categorie::class);
@@ -38,5 +39,4 @@ class Recette extends Model
     {
         return $this->hasMany(Ingredient::class);
     }
-
 }

@@ -68,7 +68,7 @@
         </header>
 
         <form action="{{ route('recette.add') }}" method="POST" class="grid grid-cols-1 lg:grid-cols-12 gap-20">
-
+            @csrf
             <div class="lg:col-span-7 space-y-16">
 
                 <section class="space-y-8">
