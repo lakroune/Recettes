@@ -109,7 +109,7 @@
                         <label
                             class="text-[9px] font-bold uppercase tracking-[0.2em] text-gray-400 block mb-2">Rechercher
                             une saveur</label>
-                        <input type="text" placeholder="EX: RISOTTO AUX TRUFFES..."
+                        <input name="search" type="text" placeholder="EX: RISOTTO AUX TRUFFES..."
                             class="w-full bg-transparent text-xl md:text-2xl font-light tracking-tight focus:outline-none placeholder:text-gray-200">
                     </div>
 
@@ -117,9 +117,9 @@
                         <div class="relative w-full md:w-48">
                             <label
                                 class="text-[9px] font-bold uppercase tracking-[0.2em] text-gray-400 block mb-2 text-right">Catégorie</label>
-                            <select
+                            <select name="categorie_id"
                                 class="custom-select w-full bg-transparent text-[11px] font-bold uppercase tracking-widest text-right pr-6 focus:outline-none cursor-pointer">
-                                <option disabled selected>Toutes les recettes</option>
+                                <option disabled selected value="">Toutes les recettes</option>
                                 @foreach ($categories as $categorie)
                                     <option value="{{ $categorie->id }}">{{ $categorie->nom_categorie }}</option>
                                 @endforeach

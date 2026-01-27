@@ -24,7 +24,18 @@ class RecetteController extends Controller
     }
     public function search(Request $request)
     {
-        $recettes = Recette::where('title_recette', 'like', '%' . $request->search . '%')->get();
+        $query = Recette::query();
+
+        $query->when($request->search, function ($q) use ($request) {
+            return $q->where('title_recette', 'like', '%' . $request->search . '%');
+        });
+        if ($request->categorie_id != "")
+            $query->when($request->categorie_id, function ($q) use ($request) {
+                return $q->where('categorie_id', $request->categorie_id);
+            });
+
+
+        $recettes = $query->get();
         $categories = Categorie::all();
         return view('home', compact('recettes', 'categories'));
     }
