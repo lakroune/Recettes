@@ -148,7 +148,7 @@
 
                         <div
                             class="absolute bottom-4 right-4 translate-y-12 group-hover:translate-y-0 transition duration-500">
-                            <button
+                            <button onclick="window.location.href='/recette/{{ $recette->id }}'"
                                 class="h-10 w-10 bg-black text-white rounded-full flex items-center justify-center shadow-xl hover:bg-orange-600 transition">
                                 <i class="fa-solid fa-arrow-right -rotate-45"></i>
                             </button>
