@@ -76,65 +76,48 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-14 pb-20 animate-in">
 
-            <div class="recipe-card group">
-                <div class="relative overflow-hidden rounded-xl bg-gray-200 aspect-video mb-4">
-                    <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&q=80&w=800"
-                        class="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 group-hover:scale-105 transition duration-700">
-                    <div class="absolute top-3 left-3 bg-white/90 backdrop-blur px-3 py-1 rounded-full shadow-sm">
-                        <span class="text-[9px] font-bold uppercase tracking-tight text-orange-600"><i
-                                class="fa-solid fa-fire mr-1"></i>Tendance</span>
-                    </div>
-                </div>
-                <div class="space-y-2 px-1">
-                    <div
-                        class="flex justify-between items-center text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                        <span>Pâtes • 15 MIN</span>
-                        <span class="text-black"><i class="fa-solid fa-star text-orange-500 mr-1"></i>4.9</span>
-                    </div>
-                    <h3 class="text-xl font-extrabold tracking-tight hover:text-orange-600 transition cursor-pointer">
-                        Pasta Al Limone Premium</h3>
-                    <div class="flex justify-between items-center pt-3 border-t border-gray-50">
-                        <div class="flex items-center gap-2">
-                            <div
-                                class="w-6 h-6 rounded-full bg-black flex items-center justify-center text-[10px] text-white font-bold">
-                                A</div>
-                            <span class="text-[10px] font-bold uppercase text-gray-500">Chef Amine</span>
-                        </div>
-                        <div class="flex gap-3 text-gray-300">
-                            <span class="text-[10px] font-bold text-gray-400"><i class="fa-regular fa-heart mr-1"></i>
-                                1.2k</span>
+            @foreach ($recettes_populaires as $recette)
+                )
+                <div class="recipe-card group">
+                    <div class="relative overflow-hidden rounded-xl bg-gray-200 aspect-video mb-4">
+                        <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&q=80&w=800"
+                            class="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 group-hover:scale-105 transition duration-700">
+                        <div class="absolute top-3 left-3 bg-white/90 backdrop-blur px-3 py-1 rounded-full shadow-sm">
+                            <span class="text-[9px] font-bold uppercase tracking-tight text-orange-600"><i
+                                    class="fa-solid fa-fire mr-1"></i>Tendance</span>
                         </div>
                     </div>
+                    <div class="space-y-2 px-1">
+                        <div
+                            class="flex justify-between items-center text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                            <span>Pâtes • 15 MIN</span>
+                            <span class="text-black"><i class="fa-solid fa-star text-orange-500 mr-1"></i>4.9</span>
+                        </div>
+                        <h3
+                            class="text-xl font-extrabold tracking-tight hover:text-orange-600 transition cursor-pointer">
+                            Pasta Al Limone Premium</h3>
+                        <div class="flex justify-between items-center pt-3 border-t border-gray-50">
+                            <div class="flex items-center gap-2">
+                                <div
+                                    class="w-6 h-6 rounded-full bg-black flex items-center justify-center text-[10px] text-white font-bold">
+                                    A</div>
+                                <span class="text-[10px] font-bold uppercase text-gray-500">Chef Amine</span>
+                            </div>
+                            <div class="flex gap-3 text-gray-300">
+                                <span class="text-[10px] font-bold text-gray-400"><i
+                                        class="fa-regular fa-heart mr-1"></i>
+                                    1.2k</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            @endforeach
 
-            <div class="recipe-card group">
-                <div class="relative overflow-hidden rounded-xl bg-gray-200 aspect-video mb-4">
-                    <img src="https://images.unsplash.com/photo-1476124369491-e7addf5db371?auto=format&fit=crop&q=80&w=800"
-                        class="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 group-hover:scale-105 transition duration-700">
-                </div>
-                <div class="space-y-2 px-1">
-                    <div
-                        class="flex justify-between items-center text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                        <span>Italien • 35 MIN</span>
-                        <span class="text-black"><i class="fa-solid fa-star text-orange-500 mr-1"></i>4.8</span>
-                    </div>
-                    <h3 class="text-xl font-extrabold tracking-tight">Risotto aux Champignons sauvages</h3>
-                    <div class="flex justify-between items-center pt-3 border-t border-gray-50">
-                        <div class="flex items-center gap-2">
-                            <div
-                                class="w-6 h-6 rounded-full bg-zinc-200 flex items-center justify-center text-[10px] text-zinc-600 font-bold">
-                                S</div>
-                            <span class="text-[10px] font-bold uppercase text-gray-500">Sarah J.</span>
-                        </div>
-                        <span class="text-[10px] font-bold text-gray-400"><i class="fa-regular fa-heart mr-1"></i>
-                            850</span>
-                    </div>
-                </div>
-            </div>
 
-           
-             
+
+
+
+
 
         </div>
     </main>
