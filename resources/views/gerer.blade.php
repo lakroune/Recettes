@@ -85,7 +85,11 @@
                            </a>
                         </div>
                         <div>
-                            <h3 class="font-black text-xl tracking-tight">{{ $recette->title_recette }}</h3>
+                            <h3 class="font-black text-xl tracking-tight">
+                                <a href="{{ route('recette.show', $recette->id) }}">
+                                    {{ $recette->title_recette }}
+                                </a>
+                            </h3>
                             <p class="text-[9px] text-gray-400 uppercase tracking-widest mt-1 italic">Posté le
                                 {{ $recette->created_at->diffForHumans() }}</p>
                         </div>

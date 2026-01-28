@@ -52,18 +52,7 @@
 
 <body class="bg-[#fafafa] text-[#1a1a1a]">
 
-    <nav class="sticky top-0 z-50 glass border-b border-gray-100">
-        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="/" class="text-sm font-black tracking-tighter uppercase">Foodie<span
-                    class="text-orange-600">.</span>Share</a>
-            <div class="flex items-center gap-6">
-                <div
-                    class="h-9 w-9 rounded-full bg-black text-white flex items-center justify-center text-xs cursor-pointer btn-animate">
-                    <i class="fa-solid fa-user"></i>
-                </div>
-            </div>
-        </div>
-    </nav>
+   <x-header />
 
     <main class="max-w-6xl mx-auto px-6 py-12">
         <header class="mb-16">
