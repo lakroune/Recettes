@@ -79,10 +79,10 @@
                 <div class="row-item flex items-center p-6 gap-6">
                     <div class="flex flex-1 items-center gap-8">
                         <div class="relative w-16 h-20 overflow-hidden">
-                           <a href="{{ route('recette.show', $recette->id) }}">
-                             <img src="{{ asset('storage/' . $recette->images[0]->url_image) }}"
-                                class="w-full h-full object-cover">
-                           </a>
+                            <a href="{{ route('recette.show', $recette->id) }}">
+                                <img src="{{ asset('storage/' . $recette->images[0]->url_image) }}"
+                                    class="w-full h-full object-cover">
+                            </a>
                         </div>
                         <div>
                             <h3 class="font-black text-xl tracking-tight">
@@ -113,7 +113,9 @@
                     <div class="w-40 flex justify-end gap-6">
                         <a href="#"
                             class="btn-action text-black border-b border-transparent hover:border-black">Modifier</a>
-                        <button class="btn-action text-gray-300 hover:text-red-500"><i
+                        <button type="button" onclick="openDeleteModal('{{ route('recette.destroy', $recette->id) }}')"
+                            class="btn-action
+                            text-gray-300 hover:text-red-500"><i
                                 class="fa-solid fa-trash-can"></i></button>
                     </div>
                 </div>
@@ -124,10 +126,55 @@
 
         </div>
     </main>
-    <footer class="py-20 text-center">
-        <p class="text-[9px] font-black uppercase tracking-[0.5em] text-gray-200">Foodie.Share Internal Studio</p>
-    </footer>
+    <div id="delete-modal"
+        class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 overflow-x-hidden overflow-y-auto">
+        <div class="fixed inset-0 bg-black/40 backdrop-blur-sm transition-opacity"></div>
 
+        <div class="relative bg-white w-full max-w-md p-8 rounded-sm shadow-2xl border border-gray-100">
+            <div class="text-center">
+                <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-50 mb-6">
+                    <i class="fa-solid fa-trash-can text-red-500 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-black uppercase tracking-tighter mb-2">Supprimer la recette ?</h3>
+                <p class="text-sm text-gray-500 mb-8">Cette action est irréversible. Voulez-vous vraiment continuer ?
+                </p>
+
+                <div class="flex gap-4">
+                    <button onclick="closeDeleteModal()"
+                        class="flex-1 px-6 py-3 text-[10px] font-bold uppercase tracking-widest border border-gray-200 hover:bg-gray-50 transition">
+                        Annuler
+                    </button>
+                    <form id="confirm-delete-form" method="POST" class="flex-1">
+                        @csrf @method('DELETE')
+                        <button type="submit"
+                            class="w-full px-6 py-3 text-[10px] font-bold uppercase tracking-widest bg-black text-white hover:bg-red-600 transition">
+                            Supprimer
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openDeleteModal(url) {
+            const modal = document.getElementById('delete-modal');
+            const form = document.getElementById('confirm-delete-form');
+            form.action = url;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Blocker le scroll
+        }
+
+        function closeDeleteModal() {
+            const modal = document.getElementById('delete-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Revenir au scroll normal
+        }
+
+        document.getElementById('delete-modal').addEventListener('click', function(e) {
+            if (e.target === this.firstElementChild) closeDeleteModal();
+        });
+    </script>
 </body>
 
 </html>

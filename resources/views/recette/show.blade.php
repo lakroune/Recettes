@@ -52,7 +52,7 @@
 
 <body class="bg-[#fafafa] text-[#1a1a1a]">
 
-   <x-header />
+    <x-header />
 
     <main class="max-w-6xl mx-auto px-6 py-12">
         <header class="mb-16">
@@ -204,13 +204,13 @@
                                                 onclick="startEdit({{ $commentaire->id }}, '{{ addslashes($commentaire->commentaire) }}')"
                                                 class="text-[9px] font-bold uppercase tracking-widest text-zinc-400 hover:text-black transition">Modifier</button>
 
-                                            <form action="{{ route('comment.destroy', $commentaire->id) }}"
-                                                method="POST"
-                                                onsubmit="return confirm('Supprimer ce commentaire ?')">
-                                                @csrf @method('DELETE')
-                                                <button type="submit"
-                                                    class="text-[9px] font-bold uppercase tracking-widest text-red-400 hover:text-red-600 transition">Supprimer</button>
-                                            </form>
+
+                                            <button type="button"
+                                                onclick="openDeleteModal('{{ route('comment.destroy', $commentaire->id) }}')"
+                                                class="text-[9px] font-bold uppercase tracking-widest text-red-400 hover:text-red-600 transition">
+                                                Supprimer
+                                            </button>
+
                                         </div>
                                     @endif
                                 </div>
@@ -223,11 +223,39 @@
             </div>
         </div>
     </main>
+    <div id="delete-modal"
+        class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 overflow-x-hidden overflow-y-auto">
+        <div class="fixed inset-0 bg-black/40 backdrop-blur-sm transition-opacity"></div>
+
+        <div class="relative bg-white w-full max-w-md p-8 rounded-sm shadow-2xl border border-gray-100">
+            <div class="text-center">
+                <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-50 mb-6">
+                    <i class="fa-solid fa-trash-can text-red-500 text-xl"></i>
+                </div>
+                <h3 class="text-xl font-black uppercase tracking-tighter mb-2">Supprimer le commentaire ?</h3>
+                <p class="text-sm text-gray-500 mb-8">Cette action est irréversible. Voulez-vous vraiment continuer ?
+                </p>
+
+                <div class="flex gap-4">
+                    <button onclick="closeDeleteModal()"
+                        class="flex-1 px-6 py-3 text-[10px] font-bold uppercase tracking-widest border border-gray-200 hover:bg-gray-50 transition">
+                        Annuler
+                    </button>
+                    <form id="confirm-delete-form" method="POST" class="flex-1">
+                        @csrf @method('DELETE')
+                        <button type="submit"
+                            class="w-full px-6 py-3 text-[10px] font-bold uppercase tracking-widest bg-black text-white hover:bg-red-600 transition">
+                            Supprimer
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
         let rating = 0;
 
-        // 1. Gestion des Étoiles
         const starIcons = document.querySelectorAll('#stars-row i[data-v]');
         starIcons.forEach(icon => {
             icon.addEventListener('click', () => {
@@ -237,7 +265,6 @@
             });
         });
 
-        // 2. Switch Avis / Question
         function setType(t) {
             const btnAvis = document.getElementById('btn-avis');
             const btnQuest = document.getElementById('btn-question');
@@ -255,7 +282,6 @@
             }
         }
 
-        // 3. Passer en mode MODIFICATION
         function startEdit(id, content) {
             const form = document.getElementById('comment-form');
             const input = document.getElementById('main-input');
@@ -291,6 +317,24 @@
             submitBtn.innerText = "Publier maintenant";
             cancelBtn.classList.add('hidden');
         }
+
+        function openDeleteModal(url) {
+            const modal = document.getElementById('delete-modal');
+            const form = document.getElementById('confirm-delete-form');
+            form.action = url;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Blocker le scroll
+        }
+
+        function closeDeleteModal() {
+            const modal = document.getElementById('delete-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Revenir au scroll normal
+        }
+
+        document.getElementById('delete-modal').addEventListener('click', function(e) {
+            if (e.target === this.firstElementChild) closeDeleteModal();
+        });
     </script>
 </body>
 

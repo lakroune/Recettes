@@ -18,7 +18,7 @@ class RecetteController extends Controller
      */
     public function index()
     {
-        $recettes = Recette::all();
+        $recettes = Recette::where('is_deleted', false)->get();
         $categories = Categorie::all();
         return view('home', compact('recettes', 'categories'));
     }
@@ -33,7 +33,7 @@ class RecetteController extends Controller
             $query->when($request->categorie_id, function ($q) use ($request) {
                 return $q->where('categorie_id', $request->categorie_id);
             });
-
+        $query->where('is_deleted', false);
 
         $recettes = $query->get();
         $categories = Categorie::all();
@@ -152,8 +152,9 @@ class RecetteController extends Controller
      */
     public function destroy(string $id)
     {
-        $recette = Recette::find($id);
-        $recette->delete();
+        $recette = Recette::where('user_id', Auth::user()->id)->find($id);
+        $recette->update(['is_deleted' => true]);
+        $recette->save();
         return redirect()->route('home')->with('success', 'Recette supprimée');
     }
 }
