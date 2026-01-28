@@ -155,6 +155,6 @@ class RecetteController extends Controller
         $recette = Recette::where('user_id', Auth::user()->id)->find($id);
         $recette->update(['is_deleted' => true]);
         $recette->save();
-        return redirect()->route('home')->with('success', 'Recette supprimée');
+        return redirect()->route('gestion')->with('success', 'Recette supprimée');
     }
 }
