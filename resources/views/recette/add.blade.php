@@ -53,11 +53,11 @@
 
 <body class="text-[#1a1a1a]">
 
-   <x-header />
+    <x-header />
 
     <main class="max-w-6xl mx-auto px-6 py-20">
         <header class="mb-16">
-             
+
             <h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter leading-none mt-4">Nouveau<br>Chef-d'œuvre.
             </h1>
         </header>
