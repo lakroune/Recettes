@@ -53,16 +53,11 @@
 
 <body class="text-[#1a1a1a]">
 
-    <nav class="h-16 flex items-center px-8 border-b border-gray-100 bg-white/80 backdrop-blur-md sticky top-0 z-50">
-        <a href="#" class="text-sm font-black tracking-tighter uppercase">Foodie<span
-                class="text-orange-600">.</span>Share</a>
-    </nav>
+   <x-header />
 
     <main class="max-w-6xl mx-auto px-6 py-20">
         <header class="mb-16">
-            <span
-                class="text-[10px] font-bold tracking-[0.4em] text-orange-600 uppercase italic underline decoration-2 underline-offset-4">Studio
-                de Création</span>
+             
             <h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter leading-none mt-4">Nouveau<br>Chef-d'œuvre.
             </h1>
         </header>

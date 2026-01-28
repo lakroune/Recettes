@@ -20,19 +20,19 @@
                          <i class="fa-solid fa-heart"></i>
                      </div>
                  </a>
-                 {{-- cree publication pincil --}}
+                 {{-- cree une recette  --}}
 
                  <a href="/recette/add" class="flex items-center gap-2 group">
                      <span
                          class="text-[10px] font-bold uppercase tracking-widest hidden sm:block group-hover:text-orange-600 transition"></span>
                      <div
                          class="h-9 w-9 rounded-full bg-black text-white flex items-center justify-center text-xs cursor-pointer btn-animate hover:bg-orange-600">
-                         <i class="pa fa-solid fa-pencil"></i>
+                         <i class="fa-solid fa-plus"></i>
                      </div>
                  </a>
 
                  {{-- profile --}}
-                 <a href="/profile" class="flex items-center gap-2 group">
+                 <a href="/recettes" class="flex items-center gap-2 group">
                      <span
                          class="text-[10px] font-bold uppercase tracking-widest hidden sm:block group-hover:text-orange-600 transition"></span>
                      <div
@@ -40,15 +40,7 @@
                          <i class="fa-solid fa-user"></i>
                      </div>
                  </a>
-                 {{-- gerer --}}
-                 <a href="/gerer" class="flex items-center gap-2 group">
-                     <span
-                         class="text-[10px] font-bold uppercase tracking-widest hidden sm:block group-hover:text-orange-600 transition"></span>
-                     <div
-                         class="h-9 w-9 rounded-full bg-black text-white flex items-center justify-center text-xs cursor-pointer btn-animate hover:bg-orange-600">
-                         <i class="fa-solid fa-gear"></i>
-                     </div>
-                 </a>
+
                  {{-- logout --}}
                  <form method="POST" action="{{ route('logout') }}">
                      @csrf

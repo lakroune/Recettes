@@ -4,13 +4,17 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommentaireController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecetteController;
-
+use App\Http\Controllers\UserController;
 
 Route::get('/login', function () {
     return view('login');
 });
 Route::get('/register', function () {
     return view('register');
+});
+
+Route::get('/gerer', function () {
+    return view('gerer');
 });
 
 
@@ -25,7 +29,6 @@ Route::get('/recette/{id}', [RecetteController::class, 'show'])->name('recette.s
 Route::post('/recette', [RecetteController::class, 'destroy'])->name('recette.delete');
 Route::post('/recette/edit', [RecetteController::class, 'update'])->name('recette.edit');
 Route::post('/comment/store', [CommentaireController::class, 'store'])->name('comment.store');
-
+Route::get('/recettes', [UserController::class, 'index'])->name('gestion');
 Route::put('/comment/update/{id}', [CommentaireController::class, 'update'])->name('comment.update');
 Route::put('/comment/destroy/{id}', [CommentaireController::class, 'destroy'])->name('comment.destroy');
-Route::post('/gerer', [RecetteController::class, 'gerer'])->name('gerer');

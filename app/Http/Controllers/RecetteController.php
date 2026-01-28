@@ -37,7 +37,7 @@ class RecetteController extends Controller
 
         $recettes = $query->get();
         $categories = Categorie::all();
-        return view('home', compact('recettes', 'categories'));
+        return view('home', compact('recettes', 'categories', 'request'));
     }
 
     /**
