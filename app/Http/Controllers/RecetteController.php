@@ -7,6 +7,7 @@ use App\Models\Etape;
 use App\Models\Image;
 use App\Models\Ingredient;
 use App\Models\Recette;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -21,7 +22,21 @@ class RecetteController extends Controller
         $recettes = Recette::where('is_deleted', false)->with(['user', 'categorie'])->get();
         $recette_jour = Recette::where('is_deleted', false)->where('is_recipe_of_day', true)->first();
         $categories = Categorie::all();
-        return view('home', compact('recettes', 'categories', 'recette_jour'));
+        return view('recettes', compact('recettes', 'categories', 'recette_jour'));
+    }
+    public function statistique()
+    {
+        $recettes_populaires = Recette::where('is_deleted', false)
+            ->with(['user', 'categorie'])
+            ->withCount('commentaires')
+            ->orderBy('commentaires_count', 'desc')
+            ->take(6)
+            ->get();
+        $recettes = Recette::where('is_deleted', false)->with(['user', 'categorie'])->get();
+        $recette_jour = Recette::where('is_deleted', false)->where('is_recipe_of_day', true)->first();
+        $visiteurs = User::all()->where('role', 'visiteur');
+        $categories = Categorie::all();
+        return view('home', compact('recettes_populaires', 'categories', 'recettes', 'recette_jour', 'visiteurs'));
     }
     public function search(Request $request)
     {
