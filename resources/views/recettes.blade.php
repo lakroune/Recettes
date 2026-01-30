@@ -71,7 +71,7 @@
 
     <x-header />
     <main class="max-w-6xl mx-auto px-6">
-     @isset($recette_jour)
+        @isset($recette_jour)
             <section class="py-12 animate-in">
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
                     <div class="md:col-span-5 space-y-4">

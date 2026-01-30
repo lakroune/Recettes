@@ -130,7 +130,7 @@ class RecetteController extends Controller
                 $etape = new Etape();
                 $etape->recette_id = $recette->id;
                 $etape->description_etape = $description;
-                $etape->order_etape = $index + 1;
+                $etape->order_etape = 1 + $index;
                 $etape->save();
             }
         });
@@ -159,23 +159,81 @@ class RecetteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
+        $recette = Recette::findOrFail($id);
+
         $request->validate([
             'title_recette' => 'required|string|max:255',
             'categorie_id' => 'required|exists:categories,id',
             'temp_preparation' => 'required|integer|min:1',
             'difficulte' => 'required|in:Facile,Moyen,Expert',
             'calories' => 'required|integer|min:0',
+            'image_principale' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'images' => 'array',
+            'images.*' => 'image|mimes:jpg,jpeg,png,webp|max:2048',
+            'ingredients' => 'required|array|min:1',
+            'ingredients.*.nom_ingredient' => 'required|string|max:255',
+            'ingredients.*.quantite' => 'required|integer|min:1',
+            'ingredients.*.unite' => 'required|string|max:50',
+            'etapes' => 'required|array|min:1',
+            'etapes.*' => 'required|string',
         ]);
-        $recette = Recette::find($id);
-        $recette->title_recette = $request->title_recette;
-        $recette->categorie_id = $request->categorie_id;
-        $recette->temp_preparation = $request->temp_preparation;
-        $recette->difficulte = $request->difficulte;
-        $recette->calories = $request->calories;
-        $recette->save();
-        return redirect()->route('recettes.gerer')->with('success', 'Recette modifiée');
+
+        DB::transaction(function () use ($request, $recette) {
+            $recette->update([
+                'title_recette' => $request->title_recette,
+                'categorie_id' => $request->categorie_id,
+                'temp_preparation' => $request->temp_preparation,
+                'difficulte' => $request->difficulte,
+                'calories' => $request->calories,
+            ]);
+
+            if ($request->hasFile('image_principale')) {
+                $recette->images()->where('is_principal', true)->delete();
+
+                $path = $request->file('image_principale')->store('recette', 'public');
+
+                $img = new Image();
+                $img->recette_id = $recette->id;
+                $img->url_image = $path;
+                $img->is_principal = true;
+                $img->save();
+            }
+
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $imageFile) {
+                    $path = $imageFile->store('recette', 'public');
+
+                    $img = new Image();
+                    $img->recette_id = $recette->id;
+                    $img->url_image = $path;
+                    $img->is_principal = false;
+                    $img->save();
+                }
+            }
+
+            $recette->ingredients()->delete();
+            foreach ($request->ingredients as $item) {
+                $ing = new Ingredient();
+                $ing->recette_id = $recette->id;
+                $ing->nom_ingredient = $item['nom_ingredient'];
+                $ing->quantite = $item['quantite'];
+                $ing->unite = $item['unite'];
+                $ing->save();
+            }
+
+            $recette->etapes()->delete();
+            foreach ($request->etapes as $index => $description) {
+                $etape = new Etape();
+                $etape->recette_id = $recette->id;
+                $etape->description_etape = $description;
+                $etape->order_etape = $index + 1;
+                $etape->save();
+            }
+        });
+
+        return redirect()->route('recettes.gerer')->with('success', 'Recette mise à jour avec succès');
     }
 
     /**
