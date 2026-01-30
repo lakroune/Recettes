@@ -71,7 +71,7 @@
 
     <x-header />
     <main class="max-w-6xl mx-auto px-6">
-        @isset($recette_jour)
+     @isset($recette_jour)
             <section class="py-12 animate-in">
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
                     <div class="md:col-span-5 space-y-4">
@@ -88,7 +88,7 @@
                         <div class="flex gap-4 pt-2">
 
 
-                            <button onclick="window.location.href='/recettes/1'"
+                            <button onclick="window.location.href='/recettes/{{ $recette_jour->id }}'"
                                 class="bg-black text-white text-[10px] font-bold uppercase tracking-wider px-6 py-3  btn-animate hover:bg-orange-600 ">Découvrir</button>
                         </div>
                     </div>
@@ -97,7 +97,7 @@
                             <div
                                 class="absolute -inset-2 bg-orange-100 rounded-[2rem] -z-10 group-hover:bg-orange-200 transition duration-500">
                             </div>
-                            <img src="https://images.unsplash.com/photo-1473093226795-af9932fe5856?auto=format&fit=crop&q=80&w=1200"
+                            <img src="{{ asset('storage/' . $recette_jour->images[0]->url_image) }}"
                                 class="w-full h-[450px] object-cover rounded-[1.5rem] shadow-2xl transition duration-500 group-hover:scale-[1.01]"
                                 alt="Hero">
                         </div>

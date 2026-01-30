@@ -62,7 +62,7 @@
                         <div class="flex gap-4 pt-2">
 
 
-                            <button onclick="window.location.href='/recettes/1'"
+                            <button onclick="window.location.href='/recettes/{{ $recette_jour->id }}'"
                                 class="bg-black text-white text-[10px] font-bold uppercase tracking-wider px-6 py-3  btn-animate hover:bg-orange-600 ">Découvrir</button>
                         </div>
                     </div>
@@ -123,13 +123,13 @@
                     <div class="space-y-2 px-1">
                         <div
                             class="flex justify-between items-center text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                            <span>Pâtes • {{ $recette->temp_preparation }}  MIN</span>
+                            <span>Pâtes • {{ $recette->temp_preparation }} MIN</span>
                             <span class="text-black"><i class="fa-solid fa-star text-orange-500 mr-1"></i>4.9</span>
                         </div>
                         <h3
                             class="text-xl font-extrabold tracking-tight hover:text-orange-600 transition cursor-pointer">
-                        <a href=" {{ route('recettes.show', $recette->id) }}">
-                            {{ $recette->title_recette }}</a>    
+                            <a href=" {{ route('recettes.show', $recette->id) }}">
+                                {{ $recette->title_recette }}</a>
                         </h3>
                         <div class="flex justify-between items-center pt-3 border-t border-gray-50">
                             <div class="flex items-center gap-2">
@@ -142,7 +142,12 @@
                             <div class="flex gap-3 text-gray-300">
                                 <span class="text-[10px] font-bold text-gray-400"><i
                                         class="fa-regular fa-heart mr-1"></i>
-                                    1.2k</span>
+                                    {{ count($recette->favoris) }}
+                                </span>
+                                <span class="text-[10px] font-bold text-gray-400"><i
+                                        class="fa-regular fa-comment mr-1"></i>
+                                    {{ count($recette->commentaires) }}
+                                </span>
                             </div>
                         </div>
                     </div>
