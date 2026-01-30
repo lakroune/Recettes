@@ -149,10 +149,11 @@ class RecetteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+       public function edit(string $id)
     {
         $recette = Recette::find($id);
-        return view('recette.edit', compact('recette'));
+        $categories = Categorie::all();
+        return view('recette.edit', compact('recette', 'categories'));
     }
 
     /**

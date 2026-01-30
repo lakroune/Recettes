@@ -20,15 +20,19 @@ Route::get('/gerer', function () {
 
 Route::get('/', [RecetteController::class, 'statistique'])->name('home');
 Route::post('/', [RecetteController::class, 'search'])->name('search');
+
 Route::get('/recettes', [RecetteController::class, 'index'])->name('recettes');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
+
 Route::post('/register', [AuthController::class, 'register'])->name('register');
+
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
 Route::get('/recette/add', [RecetteController::class, 'create'])->name('recette.create');
 Route::post('/recette/add', [RecetteController::class, 'store'])->name('recette.store');
 Route::get('/recette/{id}', [RecetteController::class, 'show'])->name('recette.show');
 Route::delete('/recette/{id}', [RecetteController::class, 'destroy'])->name('recette.destroy');
-Route::post('/recette/edit', [RecetteController::class, 'update'])->name('recette.edit');
+Route::put('/recette/edit/{id}', [RecetteController::class, 'edit'])->name('recette.edit');
 Route::post('/comment/store', [CommentaireController::class, 'store'])->name('comment.store');
 Route::get('/gestion', [UserController::class, 'index'])->name('gestion');
 Route::put('/comment/update/{id}', [CommentaireController::class, 'update'])->name('comment.update');
