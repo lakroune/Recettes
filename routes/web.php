@@ -13,9 +13,6 @@ Route::get('/register', function () {
     return view('register');
 });
 
-Route::get('/gerer', function () {
-    return view('gerer');
-});
 
 
 Route::get('/', [RecetteController::class, 'statistique'])->name('home');
@@ -27,7 +24,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('/recettes/gestion', [UserController::class, 'index'])->name('recettes.gestion');
+Route::get('/recettes/gerer', [UserController::class, 'index'])->name('gerer');
 
 Route::get('/recette/add', [RecetteController::class, 'create'])->name('recette.create');
 Route::post('/recette/add', [RecetteController::class, 'store'])->name('recette.store');
