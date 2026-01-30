@@ -26,11 +26,11 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/recettes/gerer', [UserController::class, 'index'])->name('recettes.gerer');
 
-Route::get('/recettes/create', [RecetteController::class, 'create']);
-Route::post('/recettes/store', [RecetteController::class, 'store']);
-Route::get('/recettes/{id}', [RecetteController::class, 'show']);
+Route::get('/recettes/create', [RecetteController::class, 'create'])->name('recettes.create');
+Route::post('/recettes/create', [RecetteController::class, 'store'])->name('recettes.store');
+Route::get('/recettes/{id}', [RecetteController::class, 'show'])->name('recettes.show');
 Route::delete('/recettes/{id}', [RecetteController::class, 'destroy']);
 Route::put('/recettes/edit/{id}', [RecetteController::class, 'edit']);
-Route::post('/recettes/{id}/comment/store', [CommentaireController::class, 'store']);
-Route::put('/recettes/{id}/comment/update/{id}', [CommentaireController::class, 'update']);
-Route::delete('/recettes/{id}/comment/destroy/{id}', [CommentaireController::class, 'destroy']);
+Route::post('/recettes/{id}/comments', [CommentaireController::class, 'store']);
+Route::put('/recettes/{id_recette}/comments/update/{id}', [CommentaireController::class, 'update']);
+Route::delete('/recettes/{id_recette}/comments/{id}', [CommentaireController::class, 'destroy']);

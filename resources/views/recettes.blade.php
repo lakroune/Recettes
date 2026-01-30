@@ -88,7 +88,7 @@
                         <div class="flex gap-4 pt-2">
 
 
-                            <button onclick="window.location.href='/recette/1'"
+                            <button onclick="window.location.href='/recettes/1'"
                                 class="bg-black text-white text-[10px] font-bold uppercase tracking-wider px-6 py-3  btn-animate hover:bg-orange-600 ">Découvrir</button>
                         </div>
                     </div>
@@ -159,7 +159,7 @@
 
                         <div
                             class="absolute bottom-4 right-4 translate-y-12 group-hover:translate-y-0 transition duration-500">
-                            <button onclick="window.location.href='/recette/{{ $recette->id }}'"
+                            <button onclick="window.location.href='/recettes/{{ $recette->id }}'"
                                 class="h-10 w-10 bg-black text-white rounded-full flex items-center justify-center shadow-xl hover:bg-orange-600 transition">
                                 <i class="fa-solid fa-arrow-right -rotate-45"></i>
                             </button>
@@ -180,7 +180,7 @@
 
                         <h3
                             class="text-lg font-bold tracking-tight group-hover:underline decoration-1 underline-offset-4">
-                            <a href="recette/{{ $recette->id }} ">
+                            <a href="recettes/{{ $recette->id }} ">
                                 {{ $recette->title_recette }}
                             </a>
                         </h3>

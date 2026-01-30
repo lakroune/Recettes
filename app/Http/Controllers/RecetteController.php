@@ -62,7 +62,7 @@ class RecetteController extends Controller
     public function create()
     {
         $categories = Categorie::all();
-        return view('recette.add', compact('categories'));
+        return view('recettes/create', compact('categories'));
     }
 
 
@@ -134,7 +134,7 @@ class RecetteController extends Controller
                 $etape->save();
             }
         });
-        return redirect()->route('recette.create')->with('success', 'Recette ajoutée');
+        return redirect()->route('recettes.create')->with('success', 'Recette ajoutée');
     }
 
     /**
@@ -143,23 +143,23 @@ class RecetteController extends Controller
     public function show(string $id)
     {
         $recette = Recette::find($id);
-        return view('recette.show', compact('recette'));
+        return view('recettes.show', compact('recette'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-       public function edit(string $id)
+    public function edit(string $id)
     {
         $recette = Recette::find($id);
         $categories = Categorie::all();
-        return view('recette.edit', compact('recette', 'categories'));
+        return view('recettes.edit', compact('recette', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-     public function update(Request $request, string $id)
+    public function update(Request $request, string $id)
     {
         $request->validate([
             'title_recette' => 'required|string|max:255',

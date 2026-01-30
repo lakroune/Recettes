@@ -140,7 +140,7 @@
                     </div>
 
                     @auth
-                        <form id="comment-form" action="{{ route('comment.store') }}" method="POST" class="mb-20">
+                        <form id="comment-form" action="{{ $recette->id }}/comments" method="POST" class="mb-20">
                             @csrf
                             <div id="method-container">
                             </div> <input type="hidden" name="recette_id" value="{{ $recette->id }}">
@@ -206,7 +206,7 @@
 
 
                                             <button type="button"
-                                                onclick="openDeleteModal('{{ route('comment.destroy', $commentaire->id) }}')"
+                                                onclick="openDeleteModal('{{ $recette->id }}/comments/{{ $commentaire->id }}')"
                                                 class="text-[9px] font-bold uppercase tracking-widest text-red-400 hover:text-red-600 transition">
                                                 Supprimer
                                             </button>
@@ -290,7 +290,7 @@
             const comment_id = document.getElementById('comment-id');
             const methodContainer = document.getElementById('method-container');
 
-            form.action = "{{ route('comment.update', ':id') }}".replace(':id', id);
+            form.action = "{{ $recette->id }}/comments/update/:id".replace(':id', id);
             comment_id.value = id;
             methodContainer.innerHTML = '<input type="hidden" name="_method" value="PUT">';
 
@@ -311,7 +311,7 @@
             const cancelBtn = document.getElementById('cancel-edit');
             const methodContainer = document.getElementById('method-container');
 
-            form.action = "{{ route('comment.store') }}";
+            form.action = "{{ $recette->id }}/comments";
             methodContainer.innerHTML = '';
             input.value = '';
             submitBtn.innerText = "Publier maintenant";
