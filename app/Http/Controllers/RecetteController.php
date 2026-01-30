@@ -62,7 +62,7 @@ class RecetteController extends Controller
     public function create()
     {
         $categories = Categorie::all();
-        return view('recettes/create', compact('categories'));
+        return view('/recettes/create', compact('categories'));
     }
 
 
